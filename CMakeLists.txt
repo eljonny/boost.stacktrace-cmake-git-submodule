@@ -18,7 +18,7 @@ function(stacktrace_add_library suffix opt libs defs)
 
   add_library(Boost::stacktrace_${suffix} ALIAS boost_stacktrace_${suffix})
 
-  target_include_directories(boost_stacktrace_${suffix} PUBLIC include)
+  target_include_directories(boost_stacktrace_${suffix} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
   target_link_libraries(boost_stacktrace_${suffix}
     PUBLIC
@@ -109,7 +109,7 @@ stacktrace_add_library(windbg_cached ${BOOST_STACKTRACE_ENABLE_WINDBG_CACHED} "d
 add_library(boost_stacktrace INTERFACE)
 add_library(Boost::stacktrace ALIAS boost_stacktrace)
 
-target_include_directories(boost_stacktrace INTERFACE include)
+target_include_directories(boost_stacktrace INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
 if(BOOST_STACKTRACE_ENABLE_WINDBG)
 
